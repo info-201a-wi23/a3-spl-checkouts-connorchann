@@ -19,7 +19,7 @@ normal_data <- aggregate(Checkout_Number ~ Material_Type + Checkout_Year, data =
 # Plot the data using ggplot2
 ggplot(normal_data, aes(x = Checkout_Year, y = Checkout_Number, fill = Material_Type)) +
   geom_bar(stat = "identity") +
-  labs(x = "Checkout Year", y = "Number of Checkouts", fill = "Material Type") +
+  labs(x = "Checkout Year", y = "Number of Checkouts", fill = "Material Type", title = "Normal People Material Type Checkouts") +
   theme_minimal()
 
 ```

@@ -22,6 +22,8 @@ normal_data <- aggregate(Checkout_Number ~ Material_Type + Date, data = normal_d
 # Plot the data using ggplot2
 ggplot(normal_data, aes(x = Date, y = Checkout_Number, color = Material_Type)) +
   geom_line() +
-  labs(x = "Checkout Date", y = "Number of Checkouts", color = "Material Type") +
+  labs(x = "Checkout Date", y = "Number of Checkouts", color = "Material Type", title = "Total Checkouts by Year - Normal People") +
   scale_x_date(date_labels = "%Y-%m", date_breaks = "1 year") +
   theme_minimal()
+
+```

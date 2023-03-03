@@ -17,6 +17,6 @@ ggplot(material_counts, aes(x = "", y = TotalCheckouts, fill = MaterialType)) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
   theme_void() +
-  labs(title = "Material Type Breakdown of Checkouts (2019-2023)")
+  labs(title = "Normal People Material Type Breakdown of Checkouts (2019-2023)")
 
-````
+```

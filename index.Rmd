@@ -13,8 +13,6 @@ I am choosing to examine this dataset because I am currently reading Normal Peop
 
 ### Summary Information
 
-
-
 ```{r setup, include=FALSE}
   knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 
@@ -29,13 +27,15 @@ library(tidyverse)
 
 ```
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
 For research questions, I drew questions from the inspiration section of the dataset as well as from my personal interests. All of my questions are related to the dataset chosen regarding the novel, Normal People.
+
+When observing the dataset for the first time, I analyzed the variables and values associated with the checkout data from the Seattle Public Library. In this time frame, I became curious about the checkout data metrics. And so, I calculated and determined the average number of checkouts, which totals `avg_num_of_checkouts.R`. Looking closer at the variables listed in the dataset, I began to question checkout months, specifically which month had the most checkouts. I soon discovered `month_with_most_checkouts.R` after totaling all checkouts by month. Similarly, I calculated the least amount of checkouts per year being `year_with_least_checkouts.R`. After using checkout data to find values including mean, max, and min values, I chose to focus on material type. I discovered the most common checkout material type being `most_common_checkout_material.R`, and the least common material type being `least_common_material.R`.
+
 
 1. What is the average number of checkouts?
 
 Answer: 122.8106
+
 
 
 2. What month has the most checkouts?
@@ -43,21 +43,26 @@ Answer: 122.8106
 Answer: May; 1644 checkouts
 
 
+
 3. What year has the least amount of checkouts?
 
 Answer: 2023; 151 checkouts
+
 
 
 4. What is the most common checkout material type?
 
 Answer: Audiobooks
 
+
+
 5. What is the least common material type?
 
 Answer: Books
 
 
-These 5 questions will allow me to properly examine the data, allowing me to make new discoveries about checkout data regarding the novel, Normal People at the Seattle Public Library.
+
+These 5 questions allowed me to properly examine the data, allowing me to make new discoveries about checkout data regarding the novel, Normal People at the Seattle Public Library.
 
 ```{r, echo = TRUE, p1}
 
@@ -89,20 +94,9 @@ The Normal People dataset may also suffer from potential errors and inconsistenc
 
 ### First Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+I made a line chart that represents checkout data over time, because I was interested in seeing how different material types fluctuated in popularity since 2019.
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
+The line chart titled “Total Checkouts by Year” displays the total number of checkouts by year over time using data from the Seattle Public Library. Since the book was published in 2019, the library dataset has less than 4 years of checkout data. As a result, there are less than 4 years worth of data featured within the chart. There is a noticeable peak in book checkout data in 2020 - this may possibly be a result from immediate positive feedback from the novel. Soon after in early January, the chart sees a large plunge from 600+ checkouts to ~60 checkouts within ~6 months. This sudden plunge in data may be representative from the COVID-19 pandemic and people being more cautious of hygiene. Between 2020 and 2021, Ebook popularity grows steadily, followed by all checkout data from Normal People to plunge and stagger between 0 and 100 checkouts per year between June 2021 and January 2023.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 
@@ -128,29 +122,15 @@ normal_data <- aggregate(Checkout_Number ~ Material_Type + Date, data = normal_d
 # Plot the data using ggplot2
 ggplot(normal_data, aes(x = Date, y = Checkout_Number, color = Material_Type)) +
   geom_line() +
-  labs(x = "Checkout Date", y = "Number of Checkouts", color = "Material Type") +
+  labs(x = "Checkout Date", y = "Number of Checkouts", color = "Material Type", title = "Total Checkouts by Year - Normal People") +
   scale_x_date(date_labels = "%Y-%m", date_breaks = "1 year") +
   theme_minimal()
-
 
 ```
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
-
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
-
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
+I decided to make a stacked bar chart to measure the number of checkouts over time in addition to material type.The chart helps to identify patterns in the checkout data over the years 2019 to early 2023.From the chart, we can see a shift in popularity of material types between 2019 and 2020. This is the same trend we visualized in our line first line chart. Additionally, there is a steady decrease in popularity of checkouts from the Seattle Public Library. This result may be from various reasons including COVID-19, a decreasing interest in the novel, technological issues, etc.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 
@@ -173,20 +153,14 @@ normal_data <- aggregate(Checkout_Number ~ Material_Type + Checkout_Year, data =
 # Plot the data using ggplot2
 ggplot(normal_data, aes(x = Checkout_Year, y = Checkout_Number, fill = Material_Type)) +
   geom_bar(stat = "identity") +
-  labs(x = "Checkout Year", y = "Number of Checkouts", fill = "Material Type") +
+  labs(x = "Checkout Year", y = "Number of Checkouts", fill = "Material Type", title = "Normal People Material Type Checkouts") +
   theme_minimal()
 
 ```
 
-### Your Choice
+### My Choice
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
-
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-Here's an example of how to run an R script inside an RMarkdown file:
+The chart displays a pie chart with the title "Material Type Breakdown of Checkouts (2019-2023). The pie chart shows the total checkouts for each material type, with each material type represented by a different colored slice of the pie. The pie chart allows use to see the full material type breakdown between 2019 and 2023. This chart evaluates which material types are most popular and less popular.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 
@@ -207,6 +181,6 @@ ggplot(material_counts, aes(x = "", y = TotalCheckouts, fill = MaterialType)) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
   theme_void() +
-  labs(title = "Material Type Breakdown of Checkouts (2019-2023)")
+  labs(title = "Normal People Material Type Breakdown of Checkouts (2019-2023)")
 
 ```
